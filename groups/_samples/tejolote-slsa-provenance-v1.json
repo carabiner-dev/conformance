@@ -1,0 +1,71 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "subject": [
+    {
+      "name": "ampel-v0.0.1-pre15-windows-amd64.exe",
+      "digest": {
+        "sha256": "b254f34ff3ab2738cb030d4d6813562ace1efc03437ebb75859e104d080abff9"
+      }
+    },
+    {
+      "name": "ampel-v0.0.1-pre15.provenance.json",
+      "digest": {
+        "sha256": "930efd4a9854b316afb17c8011bcd5f9763b4ed7158f44437160cf4288bedaa0"
+      }
+    },
+    {
+      "name": "ampel-v0.0.1-pre15.spdx.json",
+      "digest": {
+        "sha256": "a40c8f5fd87c9d8957b2a179bd0e93b170d0a384067ea18acbfa0612103489a3"
+      }
+    },
+    {
+      "name": "ampel-v0.0.1-pre15-darwin-arm64",
+      "digest": {
+        "sha256": "a333d49698be1dd8c6abfe77b85d952b8900391c4062451981721f783540eab9"
+      }
+    },
+    {
+      "name": "ampel-v0.0.1-pre15-linux-amd64",
+      "digest": {
+        "sha256": "f85551465e52858d83cd0d18ee951a02673158cac9c8909811f0de73e4ec9dea"
+      }
+    },
+    {
+      "name": "ampel-v0.0.1-pre15-linux-arm64",
+      "digest": {
+        "sha256": "537920891408f0efdaa3b5892014b96156e22c157e58f94c7ec97851d8cf3576"
+      }
+    }
+  ],
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://github.com/Attestations/GitHubActionsWorkflow@v1",
+      "externalParameters": {
+        "entryPoint": ".github/workflows/release.yaml",
+        "source": "git+https://github.com/carabiner-dev/ampel@2ae04903ae66f79d44096218f2ab30f86adff111"
+      },
+      "internalParameters": {},
+      "resolvedDependencies": [
+        {
+          "uri": "git+ssh://github.com/carabiner-dev/ampel@2ae04903ae66f79d44096218f2ab30f86adff111",
+          "digest": {
+            "sha1": "2ae04903ae66f79d44096218f2ab30f86adff111"
+          }
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://github.com/carabiner-dev/ampel/.github/workflows/release.yaml@2ae04903ae66f79d44096218f2ab30f86adff111"
+      },
+      "metadata": {
+        "invocationId": "15882880353",
+        "startedOn": "2025-06-25T17:19:33Z",
+        "finishedOn": "2025-06-25T17:23:44Z"
+      }
+    }
+  }
+}
+

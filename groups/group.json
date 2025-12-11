@@ -1,0 +1,65 @@
+{
+    "id": "test-policy-group",
+    "blocks": [
+        {
+            "id": "test-single",
+            "meta": {},
+            "policies": [
+                {
+                    "id": "OSPS-AC-01",
+                    "source": {
+                        "location": {
+                            "uri":"git+https://github.com/carabiner-dev/policies#slsa/builderid-base.json"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "id": "test-AND",
+            "meta": {},
+            "policies": [
+                {
+                    "id": "slsa",
+                    "source": {
+                        "location": {
+                            "uri":"git+https://github.com/carabiner-dev/policies#slsa/builderid-base.json"
+                        }
+                    }
+                },
+                {
+                    "id": "same-slsa",
+                    "source": {
+                        "location": {
+                            "uri":"git+https://github.com/carabiner-dev/policies#slsa/builderid-base.json"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "id": "test-OR",
+            "meta": {
+                "assert_mode": "OR"
+            },
+            "policies": [
+                {
+                    "id": "OSPS-AC-01",
+                    "source": {
+                        "location": {
+                            "uri":"git+https://github.com/carabiner-dev/policies#slsa/builderid-base.json"
+                        }
+                    }
+                },
+                {
+                    "id": "OSPS-AC-01",
+                    "source": {
+                        "location": {
+                            "uri":"git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/org-exists.json"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
