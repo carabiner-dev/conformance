@@ -1,0 +1,17 @@
+{
+    "id": "test-policy-group-context",
+    "common": {
+        "context": {
+            "builderId": {
+                "value": "https://github.com/slsa-framework/source-tool/.github/workflows/release.yaml"
+            }
+        }
+    },
+    "groups": [
+        {
+            "source": {
+                "location": { "uri":"git+https://github.com/carabiner-dev/conformance@8390329d53b54092679717e8a1b39450663ff00f#groups/group.json" }
+            }
+        }
+    ]
+}
