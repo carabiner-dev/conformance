@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+set -e
+test_output=""
+
+erro_handler() {
+  echo 'Last test crapped out 💩'
+  echo "Test output"
+  echo "${test_output}"
+  echo
+}
+
+trap 'erro_handler' ERR
+
 TMP_DIR=$(mktemp -d /tmp/conformance.XXXXXX )
 
 # Build ampel from the current source
@@ -14,6 +26,7 @@ echo
 
 for f in conformance/*/verify.sh; do
     echo "🔴🟡🟢 RUNNING TEST $f"
-	 "$f"
-    echo 
+	test_output=$("$f")
 done
+
+echo "All tests OK! 🥳🥳🥳"
