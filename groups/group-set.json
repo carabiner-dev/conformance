@@ -1,0 +1,29 @@
+{
+    "id": "test-policy-group-context",
+    "common": {
+        "context": {
+            "builderId": {
+                "value": "https://github.com/slsa-framework/source-tool/.github/workflows/release.yaml"
+            }
+        }
+    },
+    "groups": [
+        {
+            "blocks": [
+                {
+                    "id": "test-single",
+                    "policies": [
+                        {
+                            "id": "OSPS-AC-01",
+                            "source": {
+                                "location": {
+                                    "uri":"git+https://github.com/carabiner-dev/policies#slsa/builderid-base.json"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
