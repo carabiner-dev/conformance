@@ -25,8 +25,16 @@ export AMPEL_TEST_BINARY
 echo 
 
 for f in conformance/*/verify.sh; do
-    echo "🔴🟡🟢 RUNNING TEST $f"
+    echo -n "🔴🟡🟢 RUNNING TEST $f .. "
 	test_output=$("$f")
+    echo " ✅"
 done
 
+echo  ""
 echo "All tests OK! 🥳🥳🥳"
+echo  ""
+echo "⏱️  Performance results:"
+echo  ""
+cat time.txt
+echo  ""
+rm -f time.txt
