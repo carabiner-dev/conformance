@@ -1,0 +1,24 @@
+{
+    "id": "VERIFICATION-MATCHES-ID",
+    "meta": {
+        "description": "Tests that predicate.verification.matchesId() resolves sigstore identities"
+    },
+    "context": {
+        "identity": {
+            "required": true,
+            "type": "string"
+        }
+    },
+    "tenets": [
+        {
+            "id": "matches-signer-identity",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.matchesId(context.identity)",
+            "assessment": { "message": "Signer identity matches" },
+            "error": {
+                "message": "Signer identity mismatch",
+                "guidance": "The attestation signer does not match the expected identity"
+            }
+        }
+    ]
+}

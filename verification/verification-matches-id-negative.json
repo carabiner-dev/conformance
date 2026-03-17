@@ -1,0 +1,18 @@
+{
+    "id": "VERIFICATION-MATCHES-ID-NEGATIVE",
+    "meta": {
+        "description": "Tests that matchesId returns false for non-matching identities"
+    },
+    "tenets": [
+        {
+            "id": "rejects-wrong-identity",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.matchesId(\"sigstore::https://accounts.google.com::nobody@example.com\") == false",
+            "assessment": { "message": "Non-matching identity correctly rejected" },
+            "error": {
+                "message": "matchesId unexpectedly returned true for wrong identity",
+                "guidance": "matchesId should return false when the identity does not match"
+            }
+        }
+    ]
+}

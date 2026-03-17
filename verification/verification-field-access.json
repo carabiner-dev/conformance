@@ -1,0 +1,18 @@
+{
+    "id": "VERIFICATION-FIELD-ACCESS",
+    "meta": {
+        "description": "Tests that predicate.verification fields are accessible and matchesId works"
+    },
+    "tenets": [
+        {
+            "id": "verified-true",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.verified == true",
+            "assessment": { "message": "Signature verification passed" },
+            "error": {
+                "message": "Signature not verified",
+                "guidance": "The attestation signature could not be verified"
+            }
+        }
+    ]
+}
