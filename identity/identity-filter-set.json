@@ -1,0 +1,33 @@
+{
+    "id": "IDENTITY-FILTER-SET",
+    "meta": {
+        "description": "Tests that non-matching attestation identities are silently discarded"
+    },
+    "common": {
+        "identities": [
+            {
+                "sigstore": {
+                    "issuer": "https://token.actions.githubusercontent.com",
+                    "identity": "https://github.com/slsa-framework/source-tool/.github/workflows/release.yaml@refs/tags/v0.6.3"
+                }
+            }
+        ]
+    },
+    "policies": [
+        {
+            "id": "check-provenance",
+            "tenets": [
+                {
+                    "id": "has-provenance",
+                    "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+                    "code": "has(predicate.data.buildDefinition)",
+                    "assessment": { "message": "Provenance found" },
+                    "error": {
+                        "message": "No provenance",
+                        "guidance": "Expected SLSA provenance with buildDefinition"
+                    }
+                }
+            ]
+        }
+    ]
+}

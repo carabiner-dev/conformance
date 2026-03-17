@@ -1,0 +1,15 @@
+{
+    "_type": "https://in-toto.io/Statement/v1",
+    "subject": [
+        {
+            "name": "sourcetool-v0.6.3-linux-amd64",
+            "digest": {
+                "sha256": "70e764e02f34dfeb702ae9c1c3e4e389e92938c492183457289a40b8470e30e0"
+            }
+        }
+    ],
+    "predicateType": "https://example.com/dummy/v1",
+    "predicate": {
+        "note": "This is an unsigned attestation that should be filtered out by identity checks"
+    }
+}
