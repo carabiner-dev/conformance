@@ -13,5 +13,6 @@ echo "🚜 Running Chained PolicySet Tests"
 	-p conformance/multichains/osps-baseline-chains.compiled.policy.json \
 	--exit-code=false --format=attestation \
 		| jq '.predicate.results[] | "\(.policy.id) \(.status)" ' \
+		| tr -d '\r' \
 		| sha256sum - \
-		| grep 83acaf3484659ca323cecfc4fab99c4dc14811a293f7239e584724fb9bdca7a5 
+		| grep 83acaf3484659ca323cecfc4fab99c4dc14811a293f7239e584724fb9bdca7a5
