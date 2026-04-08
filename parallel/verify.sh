@@ -6,15 +6,17 @@ source conformance/common.sh
 # evaluation engine.
 
 echo ">> 1000 Evaluations: Serially"
-command time -f " > 1000 Evaluations Serially: %E" -ao time.txt -- $AMPEL_TEST_BINARY verify conformance/parallel/sourcetool \
+TIMEFORMAT=" > 1000 Evaluations Serially: %lR"
+{ time $AMPEL_TEST_BINARY verify conformance/parallel/sourcetool \
 	-a conformance/parallel/sourcetool.intoto.jsonl \
 	-p conformance/parallel/1000-evaluations.ampel.json \
-    --workers=1 > /dev/null
+	--workers=1 > /dev/null ; } 2>> time.txt
 echo ""
 
-command echo ">> 1000 Evaluations: 100 Parallel Workers"
-command time -f " > 1000 Evaluations 100 Workers: %E" -ao time.txt -- $AMPEL_TEST_BINARY verify conformance/parallel/sourcetool \
+echo ">> 1000 Evaluations: 100 Parallel Workers"
+TIMEFORMAT=" > 1000 Evaluations 100 Workers: %lR"
+{ time $AMPEL_TEST_BINARY verify conformance/parallel/sourcetool \
 	-a conformance/parallel/sourcetool.intoto.jsonl \
 	-p conformance/parallel/1000-evaluations.ampel.json \
-    --workers=100 > /dev/null
+	--workers=100 > /dev/null ; } 2>> time.txt
 echo ""
