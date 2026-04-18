@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 source conformance/common.sh
 
 # Run chained PolicySet multiple times to check consistency

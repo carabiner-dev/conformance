@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 source conformance/common.sh
 
 # This test verifies that the race condition bug with file handles in ghrfs has been fixed.

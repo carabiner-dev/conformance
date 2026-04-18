@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 source conformance/common.sh
 
 # This test executes 1000 evaluations on a binary to test ampel's parallel 

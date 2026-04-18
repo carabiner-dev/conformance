@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 source conformance/common.sh
 
 # This test performs a simple evaluation reading a remote policy
