@@ -1,0 +1,6 @@
+# Conformance test fixtures must preserve exact byte content across platforms.
+# Line-ending conversion changes file hashes, breaking subject verification.
+*.txt binary
+*.json binary
+*.jsonl binary
+sourcetool* binary
