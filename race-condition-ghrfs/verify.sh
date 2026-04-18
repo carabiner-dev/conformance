@@ -18,7 +18,7 @@ for i in {1..10}; do
     output=$($AMPEL_TEST_BINARY verify \
         sha256:b2f66926949aef30bede58144b797b763fed2d00c75a58a246814a5e65acec55 \
         -p 'git+https://github.com/carabiner-dev/demo-slsa-e2e#policies/fritoto-check-artifacts.json' \
-        -c release:carabiner-dev/demo-slsa-e2e@v0.1.1 2>&1)
+        -c release:carabiner-dev/demo-slsa-e2e@v0.1.1 2>&1) || true
 
     if echo "$output" | grep -q "file already closed"; then
         fail=$((fail+1))
