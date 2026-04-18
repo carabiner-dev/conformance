@@ -1,0 +1,26 @@
+{
+  "id": "VULNREPORT-TRANSFORMER-VULNS-V02",
+  "meta": {
+    "description": "Verifies the vulnreport transformer emits an in-toto vulns/v0.2 predicate when configured."
+  },
+  "transformers": [
+    {
+      "id": "internal:vulnreport",
+      "config": { "output": "vulnreport" }
+    }
+  ],
+  "tenets": [
+    {
+      "id": "vulns-v02-results-present",
+      "predicates": {
+        "types": ["https://in-toto.io/attestation/vulns/v0.2"]
+      },
+      "code": "size(predicates) == 1 && predicates[0].data.scanner.uri == 'https://trivy.dev' && size(predicates[0].data.scanner.result) >= 2 && predicates[0].data.scanner.result.exists(r, r.id == 'CVE-2025-21613')",
+      "assessment": { "message": "vulns/v0.2 predicate contains the expected scanner and findings" },
+      "error": {
+        "message": "vulns/v0.2 predicate did not match expectations",
+        "guidance": "The vulnreport transformer with output=vulnreport should emit a vulns/v0.2 predicate from the Trivy scanner with the expected findings"
+      }
+    }
+  ]
+}
