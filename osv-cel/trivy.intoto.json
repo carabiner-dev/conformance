@@ -1,0 +1,78 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "target.txt",
+      "digest": {
+        "sha256": "ebb167332693270b38e485f21977d35eb4bbadfac16b291783518d0c578ca394"
+      }
+    }
+  ],
+  "predicateType": "https://trivy.dev/report",
+  "predicate": {
+    "SchemaVersion": 2,
+    "CreatedAt": "2025-01-21T13:11:48.480653755-06:00",
+    "ArtifactName": "conformance/vulnreport/target.txt",
+    "ArtifactType": "filesystem",
+    "Results": [
+      {
+        "Target": "go.mod",
+        "Class": "lang-pkgs",
+        "Type": "gomod",
+        "Vulnerabilities": [
+          {
+            "VulnerabilityID": "CVE-2025-21613",
+            "PkgID": "github.com/go-git/go-git/v5@v5.12.0",
+            "PkgName": "github.com/go-git/go-git/v5",
+            "PkgIdentifier": {
+              "PURL": "pkg:golang/github.com/go-git/go-git/v5@5.12.0"
+            },
+            "InstalledVersion": "5.12.0",
+            "FixedVersion": "5.13.0",
+            "Status": "fixed",
+            "Title": "argument injection via crafted ssh URL",
+            "Description": "go-git is a highly extensible git implementation library written in pure Go.",
+            "Severity": "CRITICAL",
+            "CweIDs": ["CWE-88"],
+            "CVSS": {
+              "ghsa": {
+                "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "V3Score": 9.8
+              }
+            },
+            "References": [
+              "https://github.com/go-git/go-git/security/advisories/GHSA-v725-9546-7q7m"
+            ],
+            "PublishedDate": "2025-01-06T17:15:00Z",
+            "LastModifiedDate": "2025-01-07T18:15:00Z"
+          },
+          {
+            "VulnerabilityID": "CVE-2025-21614",
+            "PkgID": "github.com/go-git/go-git/v5@v5.12.0",
+            "PkgName": "github.com/go-git/go-git/v5",
+            "PkgIdentifier": {
+              "PURL": "pkg:golang/github.com/go-git/go-git/v5@5.12.0"
+            },
+            "InstalledVersion": "5.12.0",
+            "FixedVersion": "5.13.0",
+            "Status": "fixed",
+            "Title": "denial of service",
+            "Description": "go-git denial of service",
+            "Severity": "HIGH",
+            "CVSS": {
+              "ghsa": {
+                "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "V3Score": 7.5
+              }
+            },
+            "References": [
+              "https://github.com/go-git/go-git/security/advisories/GHSA-r9px-m959-cxf4"
+            ],
+            "PublishedDate": "2025-01-06T17:15:00Z",
+            "LastModifiedDate": "2025-01-07T18:15:00Z"
+          }
+        ]
+      }
+    ]
+  }
+}
