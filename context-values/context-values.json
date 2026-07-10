@@ -1,0 +1,28 @@
+{
+    "id": "CONTEXT-VALUES",
+    "meta": {
+        "description": "Exercises every ContextVal resolution form: static value, default, default+provider override, value+provider (value wins), expression from subject, expression with explicit runtime, expression reading a sibling static value, and expression isolation from sibling expressions (two-phase resolution)."
+    },
+    "context": {
+        "static_value":           { "value":   "static" },
+        "default_only":           { "default": "def" },
+        "default_overridden":     { "default": "def" },
+        "value_beats_provider":   { "value":   "burned" },
+        "expr_subject":           { "expression": "subject.name" },
+        "expr_with_runtime":      { "expression": "'hello'", "runtime": "cel@v0" },
+        "expr_reads_static":      { "expression": "context.static_value + '-ext'" },
+        "expr_cant_see_other_expr": { "expression": "has(context.expr_subject) ? 'leaked' : 'ok'" },
+        "required_expr":          { "expression": "'filled'", "required": true }
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "context.static_value == 'static' && context.default_only == 'def' && context.default_overridden == 'over' && context.value_beats_provider == 'burned' && context.expr_subject == subject.name && context.expr_with_runtime == 'hello' && context.expr_reads_static == 'static-ext' && context.expr_cant_see_other_expr == 'ok' && context.required_expr == 'filled'",
+            "assessment": { "message": "All ContextVal resolution forms behaved as expected" },
+            "error": {
+                "message": "Context value resolution mismatch",
+                "guidance": "One or more ContextVal entries did not resolve to the expected value. Check the values under context.* in the tenet code above."
+            }
+        }
+    ]
+}

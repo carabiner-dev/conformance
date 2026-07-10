@@ -10,7 +10,7 @@
     {
       "id": "osv-results-present",
       "predicates": {
-        "types": ["https://ossf.github.io/osv-schema/results@v1.6.7"]
+        "types": ["https://ossf.github.io/osv-schema/results@v1"]
       },
       "code": "size(predicates) == 1 && size(predicates[0].data.results) > 0 && predicates[0].data.results[0].packages.exists(p, p.vulnerabilities.exists(v, v.id == 'CVE-2025-21613'))",
       "assessment": { "message": "OSV report contains the expected vulnerability" },
