@@ -9,7 +9,7 @@
         "default_overridden":     { "default": "def" },
         "value_beats_provider":   { "value":   "burned" },
         "expr_subject":           { "expression": "subject.name" },
-        "expr_with_runtime":      { "expression": "'hello'", "runtime": "cel@v0" },
+        "expr_with_runtime":      { "expression": "'hello'", "runtime": "cel@v1" },
         "expr_reads_static":      { "expression": "context.static_value + '-ext'" },
         "expr_cant_see_other_expr": { "expression": "has(context.expr_subject) ? 'leaked' : 'ok'" },
         "required_expr":          { "expression": "'filled'", "required": true }
