@@ -1,0 +1,48 @@
+{
+    "id": "VERIFICATION-SIGNERS-NO-ALLOWLIST",
+    "meta": {
+        "description": "Tests that verification.signers is populated even when no signer allowlist is supplied"
+    },
+    "context": {
+        "issuer": {
+            "required": true,
+            "type": "string"
+        },
+        "identity": {
+            "required": true,
+            "type": "string"
+        }
+    },
+    "tenets": [
+        {
+            "id": "identities-empty",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "size(predicate.verification.identities) == 0",
+            "assessment": { "message": "identities is empty without an allowlist" },
+            "error": {
+                "message": "verification.identities is not empty without an allowlist",
+                "guidance": "verification.identities is the matched allowlist subset and must be empty when no allowlist is supplied"
+            }
+        },
+        {
+            "id": "signers-populated",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "size(predicate.verification.signers) == 1",
+            "assessment": { "message": "signers is populated without an allowlist" },
+            "error": {
+                "message": "verification.signers is empty without an allowlist",
+                "guidance": "verification.signers must expose the actual verified signers even when no allowlist is supplied"
+            }
+        },
+        {
+            "id": "signers-actual-identity",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.signers.exists(s, s.?sigstore.?issuer.orValue(\"\") == context.issuer && s.?sigstore.?identity.orValue(\"\") == context.identity)",
+            "assessment": { "message": "signers records the expected sigstore identity" },
+            "error": {
+                "message": "actual signer identity not found in verification.signers",
+                "guidance": "verification.signers elements must expose the sigstore issuer and identity of the real signer"
+            }
+        }
+    ]
+}

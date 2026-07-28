@@ -1,0 +1,58 @@
+{
+    "id": "VERIFICATION-SIGNERS",
+    "meta": {
+        "description": "Tests that verification.signers exposes the actual verified signers alongside a pinned allowlist, using CEL optional types (.?/orValue/hasValue) so the feature stays enabled"
+    },
+    "context": {
+        "issuer": {
+            "required": true,
+            "type": "string"
+        },
+        "identity": {
+            "required": true,
+            "type": "string"
+        }
+    },
+    "tenets": [
+        {
+            "id": "signers-populated",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "size(predicate.verification.signers) == 1",
+            "assessment": { "message": "signers carries the actual verified signer" },
+            "error": {
+                "message": "verification.signers is not populated",
+                "guidance": "verification.signers must expose the attestation's actual verified signers"
+            }
+        },
+        {
+            "id": "signers-actual-identity",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.signers.exists(s, s.?sigstore.?issuer.orValue(\"\") == context.issuer && s.?sigstore.?identity.orValue(\"\") == context.identity)",
+            "assessment": { "message": "signers records the expected sigstore identity" },
+            "error": {
+                "message": "actual signer identity not found in verification.signers",
+                "guidance": "verification.signers elements must expose the sigstore issuer and identity of the real signer"
+            }
+        },
+        {
+            "id": "optional-absent-field-safe",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "predicate.verification.signers.all(s, s.?sigstore.hasValue() && s.?key.?id.orValue(\"none\") == \"none\")",
+            "assessment": { "message": "optional traversal of an absent field yields the default" },
+            "error": {
+                "message": "optional traversal of an absent field failed",
+                "guidance": "selecting an absent field with .? must yield an empty optional, not an error; the CEL environment must enable optional types"
+            }
+        },
+        {
+            "id": "identities-matched-subset",
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "code": "size(predicate.verification.identities) == 1",
+            "assessment": { "message": "identities carries the matched allowlist subset" },
+            "error": {
+                "message": "verification.identities does not carry the matched allowlist subset",
+                "guidance": "with a pinned allowlist, verification.identities must contain the matched identities"
+            }
+        }
+    ]
+}
