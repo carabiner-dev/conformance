@@ -1,0 +1,25 @@
+{
+  "id": "OSV-CEL-PLUGIN",
+  "meta": {
+    "description": "Exercises the osv CEL plugin end-to-end over an OSV predicate produced by the internal:vulnreport transformer (Trivy -> OSV)."
+  },
+  "transformers": [
+    { "id": "internal:vulnreport" }
+  ],
+  "tenets": [
+    {
+      "id": "osv-plugin-functions",
+      "predicates": {
+        "types": ["https://ossf.github.io/osv-schema/results@v1"]
+      },
+      "code": "size(predicates) == 1 && size(osv.vulns(predicates[0])) == 2 && 'CVE-2025-21613' in osv.ids(predicates[0]) && osv.vulns(predicates[0]).exists(v, osv.matchesID(v, 'CVE-2025-21613') && osv.cvss(v) >= 9.0 && osv.isFixed(v)) && osv.forEcosystem(predicates[0], 'Go').all(v, osv.isFixed(v))",
+      "assessment": {
+        "message": "osv plugin resolved the OSV predicate: found CVE-2025-21613 as a fixed CRITICAL (CVSS >= 9.0) and every Go vulnerability is fixed"
+      },
+      "error": {
+        "message": "osv plugin checks did not match expectations",
+        "guidance": "The internal:vulnreport transformer should emit an OSV predicate over which the osv plugin (osv.vulns/osv.ids/osv.matchesID/osv.cvss/osv.isFixed/osv.forEcosystem) resolves CVE-2025-21613 as a fixed CRITICAL vulnerability"
+      }
+    }
+  ]
+}

@@ -30,3 +30,18 @@ $AMPEL_TEST_BINARY verify "$SUBJECT" \
     -c jsonl:"$ATTESTATIONS" \
     -p conformance/verification/verification-matches-id-negative.json \
     --signer "${SIGNER_SLUG}"
+
+echo "  ▸ Test: predicate.verification.signers exposes the actual signers (with allowlist)"
+$AMPEL_TEST_BINARY verify "$SUBJECT" \
+    -c jsonl:"$ATTESTATIONS" \
+    -p conformance/verification/verification-signers.json \
+    --signer "${SIGNER_SLUG}" \
+    -x "issuer:${SIGNER_ISSUER}" \
+    -x "identity:${SIGNER_IDENTITY}"
+
+echo "  ▸ Test: predicate.verification.signers populated without a signer allowlist"
+$AMPEL_TEST_BINARY verify "$SUBJECT" \
+    -c jsonl:"$ATTESTATIONS" \
+    -p conformance/verification/verification-signers-no-allowlist.json \
+    -x "issuer:${SIGNER_ISSUER}" \
+    -x "identity:${SIGNER_IDENTITY}"
