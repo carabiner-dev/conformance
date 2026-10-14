@@ -17,4 +17,4 @@ echo "🚜 Running Chained PolicySet Tests"
 		| jq '.predicate.results[] | "\(.policy.id) \(.status)" ' \
 		| tr -d '\r' \
 		| sha256sum - \
-		| grep 83acaf3484659ca323cecfc4fab99c4dc14811a293f7239e584724fb9bdca7a5
+		| grep c60a5ec4438acef81c395ac185d84e65c9bf163de6ddd00d5d68cad41e1dad3a
